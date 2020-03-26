@@ -1,0 +1,34 @@
+-- CREATE DATABASE surf_weather;
+-- USE surf_weather;
+-- GRANT ALL ON surf_weather.* TO 'alex'@'localhost';
+
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+  id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS weather;
+CREATE TABLE weather (
+  id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_id INT(11) UNSIGNED,
+  city VARCHAR(255) NOT NULL,
+  remote_id INT(11) UNSIGNED NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY city (city),
+  KEY remote_id (remote_id),
+  CONSTRAINT `FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS surf;
+CREATE TABLE surf (
+  id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  spot_name VARCHAR(255) NOT NULL,
+  spot_id INT(11) UNSIGNED NOT NULL,
+  PRIMARY KEY (id),
+  KEY spot_id (spot_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
