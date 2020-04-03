@@ -1,6 +1,35 @@
-// const navbar = new NavBar();
-//
-// $('#app').html(navbar.render().$el);
+const Router = Backbone.Router.extend({
+  routes: {
+    '': 'homeScreen',
+    'sign_up': 'signUp',
+    'login': 'login',
+    'search': 'search',
+    'my_weather': 'myWeather'
+  },
 
-// Here we'll have backbone router logic
-// Each page or view will be initialized in its own function
+  homeScreen: function() {
+    console.log('this is home screen');
+  },
+
+  signUp: function() {
+    console.log('this is sign up');
+  },
+
+  login: function() {
+    console.log('this is login');
+  },
+
+  search: function() {
+    console.log('this is search');
+  },
+
+  myWeather: function() {
+    console.log('this is my weather');
+  }
+});
+
+const router = new Router();
+
+$(function() {
+  Backbone.history.start();
+});

@@ -21,12 +21,10 @@ const NavigationView = Backbone.View.extend({
     },
 
     render: function(){
-      console.log('this worked');
       this.$el.html(this.template());
       const navListView = new NavLinkView({
         model: user
       });
-      navListView.render().el;
       return this;
     }
 });
