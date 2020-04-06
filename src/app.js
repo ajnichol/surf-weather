@@ -45,4 +45,7 @@ const router = new Router();
 
 $(function() {
   Backbone.history.start();
+  $('.carousel').carousel({
+    interval: 8000
+  });
 });
