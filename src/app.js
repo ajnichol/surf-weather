@@ -1,30 +1,38 @@
 const Router = Backbone.Router.extend({
   routes: {
-    '': 'homeScreen',
+    '': 'home',
     'sign_up': 'signUp',
     'login': 'login',
     'search': 'search',
     'my_weather': 'myWeather'
   },
 
-  homeScreen: function() {
-    console.log('this is home screen');
+  initialize: function(){
+    this.home = new Home();
+    this.signUp = new SignUp();
+    this.login = new Login();
+    this.search = new Search();
+    this.myWeather = new MyWeather();
+  },
+
+  home: function() {
+    $('#content').html(ViewManager.showView(this.home));
   },
 
   signUp: function() {
-    console.log('this is sign up');
+    $('#content').html(ViewManager.showView(this.signUp));
   },
 
   login: function() {
-    console.log('this is login');
+    $('#content').html(ViewManager.showView(this.login));
   },
 
   search: function() {
-    console.log('this is search');
+    $('#content').html(ViewManager.showView(this.search));
   },
 
   myWeather: function() {
-    console.log('this is my weather');
+    $('#content').html(ViewManager.showView(this.myWeather));
   }
 });
 
