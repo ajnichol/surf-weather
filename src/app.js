@@ -16,22 +16,27 @@ const Router = Backbone.Router.extend({
   },
 
   home: function() {
+    $('#content').removeClass('container');
     $('#content').html(ViewManager.showView(this.home));
   },
 
   signUp: function() {
+    $('#content').addClass('container');
     $('#content').html(ViewManager.showView(this.signUp));
   },
 
   login: function() {
+    $('#content').addClass('container');
     $('#content').html(ViewManager.showView(this.login));
   },
 
   search: function() {
+    $('#content').addClass('container');
     $('#content').html(ViewManager.showView(this.search));
   },
 
   myWeather: function() {
+    $('#content').addClass('container');
     $('#content').html(ViewManager.showView(this.myWeather));
   }
 });

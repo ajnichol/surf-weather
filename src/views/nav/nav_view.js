@@ -13,7 +13,7 @@ const NavigationView = Backbone.View.extend({
             '</div>' +
           '</div>' +
         '</nav>' +
-        '<div class="container" id="content">' +
+        '<div id="content">' +
         '</div>'
     ),
 
