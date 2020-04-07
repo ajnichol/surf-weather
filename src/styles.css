@@ -5,3 +5,20 @@
 .carousel .item {
   max-height: 95vh;
 }
+
+.login_signup {
+  background-image: url('img/login_signup/login_signup2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+}
+
+.login_signup label {
+  color: white;
+}
+
+.forms h3 {
+  color: white;
+}

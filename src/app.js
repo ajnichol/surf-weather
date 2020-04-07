@@ -16,27 +16,25 @@ const Router = Backbone.Router.extend({
   },
 
   home: function() {
-    $('#content').removeClass('container');
     $('#content').html(ViewManager.showView(this.home));
+    $('.carousel').carousel({
+      interval: 7000
+    });
   },
 
   signUp: function() {
-    $('#content').addClass('container');
     $('#content').html(ViewManager.showView(this.signUp));
   },
 
   login: function() {
-    $('#content').addClass('container');
     $('#content').html(ViewManager.showView(this.login));
   },
 
   search: function() {
-    $('#content').addClass('container');
     $('#content').html(ViewManager.showView(this.search));
   },
 
   myWeather: function() {
-    $('#content').addClass('container');
     $('#content').html(ViewManager.showView(this.myWeather));
   }
 });
@@ -45,7 +43,4 @@ const router = new Router();
 
 $(function() {
   Backbone.history.start();
-  $('.carousel').carousel({
-    interval: 8000
-  });
 });
