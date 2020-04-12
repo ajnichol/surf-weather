@@ -1,5 +1,5 @@
 const NavigationView = Backbone.View.extend({
-    el: '#app',
+    el: '#app_nav',
 
     template: _.template(
       '<nav class="navbar navbar-inverse">' +
@@ -12,9 +12,7 @@ const NavigationView = Backbone.View.extend({
               '</ul>' +
             '</div>' +
           '</div>' +
-        '</nav>' +
-        '<div id="content">' +
-        '</div>'
+        '</nav>'
     ),
 
     initialize: function(){

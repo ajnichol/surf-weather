@@ -1,8 +1,9 @@
 const User = Backbone.Model.extend({
+    idAttribute: 'id',
+
     defaults: {
         name: '',
         email: '',
-        password: '',
         isLoggedIn: false
     }
 });

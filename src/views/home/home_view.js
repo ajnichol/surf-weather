@@ -1,7 +1,5 @@
 const Home = Backbone.View.extend({
-  tagName: 'div',
-
-  id: 'home',
+  el: '#home',
 
   template: _.template(
     '<div id="carousel-generic" class="carousel slide" data-ride="carousel">' +
@@ -45,7 +43,6 @@ const Home = Backbone.View.extend({
   ),
 
   render: function() {
-    this.remove();
     this.$el.html(this.template());
     return this;
   }

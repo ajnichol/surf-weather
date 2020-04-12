@@ -6,7 +6,7 @@
   max-height: 95vh;
 }
 
-.login_signup {
+#sign_up {
   background-image: url('img/login_signup/login_signup2.jpg');
   background-size: cover;
   background-position: center;
@@ -15,7 +15,16 @@
   width: 100%;
 }
 
-.login_signup label {
+#login {
+  background-image: url('img/login_signup/login_signup2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+}
+
+.form-group label {
   color: white;
 }
 

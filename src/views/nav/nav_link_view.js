@@ -13,10 +13,11 @@ const NavLinkView = Backbone.View.extend({
 
   initialize: function() {
     this.render();
+    this.listenTo(user, 'change', this.render);
   },
 
   render: function(){
-    this.$el.append(this.template(this.model.toJSON()));
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   }
 });

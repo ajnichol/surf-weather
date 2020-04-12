@@ -7,7 +7,11 @@ const Router = Backbone.Router.extend({
     'my_weather': 'myWeather'
   },
 
-  initialize: function(){
+  preinitialize: function() {
+    console.log('this is cool');
+  },
+
+  initialize: function() {
     this.home = new Home();
     this.signUp = new SignUp();
     this.login = new Login();
@@ -16,18 +20,27 @@ const Router = Backbone.Router.extend({
   },
 
   home: function() {
-    $('#content').html(ViewManager.showView(this.home));
+    $('#sign_up').hide();
+    $('#login').hide();
+    $('#home').show();
+    this.home.render().el;
     $('.carousel').carousel({
       interval: 7000
     });
   },
 
   signUp: function() {
-    $('#content').html(ViewManager.showView(this.signUp));
+    $('#home').hide();
+    $('#login').hide();
+    $('#sign_up').show();
+    this.signUp.render().el;
   },
 
   login: function() {
-    $('#content').html(ViewManager.showView(this.login));
+    $('#home').hide();
+    $('#sign_up').hide();
+    $('#login').show();
+    this.login.render().el;
   },
 
   search: function() {
