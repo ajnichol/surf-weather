@@ -6,7 +6,7 @@ const NavigationView = Backbone.View.extend({
           '<div class="container-fluid">' +
             '<div class="container">' +
               '<div class="navbar-header">' +
-                '<a class="navbar-brand" href="#"><span class="glyphicon glyphicon-tint"></span>Surf-Weather</a>' +
+                '<a class="navbar-brand" href="#">Surf-Weather</a>' +
               '</div>' +
               '<ul class="nav navbar-nav navbar-right">' +
               '</ul>' +

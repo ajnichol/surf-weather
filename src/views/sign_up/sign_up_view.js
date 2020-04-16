@@ -18,7 +18,7 @@ const SignUp = Backbone.View.extend({
     '<div class="form-group">' +
       '<label for="sign_up_email" class="col-sm-2 control-label">Email</label>' +
       '<div class="col-sm-10">' +
-        '<input type="email" class="form-control" name="sign_up_email" id="sign_up_email" placeholder="Email">' +
+        '<input type="text" class="form-control" name="sign_up_email" id="sign_up_email" placeholder="Email">' +
       '</div>' +
     '</div>' +
     '<div class="form-group">' +
@@ -55,9 +55,15 @@ const SignUp = Backbone.View.extend({
     let user_email = $('#sign_up_email').val().trim();
     let user_password = $('#sign_up_password').val().trim();
     let user_confirm = $('#sign_up_confirm').val().trim();
-    console.log(user_name);
-    console.log(user_email);
-    console.log(user_password);
-    console.log(user_confirm);
+    user.save({name: user_name, email: user_email, password: user_password, confirm_password: user_confirm}, {
+      wait: true,
+      success: function(model, response) {
+        console.log(response);
+      },
+      error: function(model, error) {
+        console.log(model);
+        console.log(error);
+      }
+    });
   }
 });
