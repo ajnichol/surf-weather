@@ -14,7 +14,7 @@ const NavLinkView = Backbone.View.extend({
 
   initialize: function() {
     this.render();
-    this.listenTo(user, 'change', this.render);
+    this.listenTo(user, 'change:isLoggedIn', this.render);
   },
 
   render: function(){

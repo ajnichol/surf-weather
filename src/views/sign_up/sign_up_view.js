@@ -7,6 +7,11 @@ const SignUp = Backbone.View.extend({
       '</div>' +
       '<div class="col-sm-10">' +
         '<h3>Sign Up</h3>' +
+        '<% if (error != "") {%>' +
+          '<p class="error"><%=error%></p>' +
+        '<% } else if (success != "") {%>' +
+          '<p class="success"><%=success%></p>' +
+        '<% } %>' +
       '</div>' +
     '</div>' +
     '<div class="form-group">' +
@@ -44,8 +49,13 @@ const SignUp = Backbone.View.extend({
     'submit': 'sign_up'
   },
 
+  initialize: function() {
+    this.listenTo(user, 'change:error', this.render);
+    this.listenTo(user, 'change:success', this.render);
+  },
+
   render: function() {
-    this.$el.html(this.template());
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   },
 
@@ -58,11 +68,11 @@ const SignUp = Backbone.View.extend({
     user.save({name: user_name, email: user_email, password: user_password, confirm_password: user_confirm}, {
       wait: true,
       success: function(model, response) {
-        console.log(response);
+        JSON.stringify(response);
+        model.set('success', response);
       },
       error: function(model, error) {
-        console.log(model);
-        console.log(error);
+        model.set('error', error.responseText);
       }
     });
   }

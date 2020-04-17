@@ -13,7 +13,9 @@ const Router = Backbone.Router.extend({
 
   initialize: function() {
     this.home = new Home();
-    this.signUp = new SignUp();
+    this.signUp = new SignUp({
+      model: user
+    });
     this.login = new Login();
     this.search = new Search();
     this.myWeather = new MyWeather();

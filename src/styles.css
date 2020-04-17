@@ -31,3 +31,11 @@
 .forms h3 {
   color: white;
 }
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
