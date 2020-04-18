@@ -1,5 +1,5 @@
 const User = Backbone.Model.extend({
-    urlRoot: 'php/sign_up/sign_up.php',
+    urlRoot: 'php/login_sign_up/login_sign_up.php',
 
     idAttribute: 'id',
 

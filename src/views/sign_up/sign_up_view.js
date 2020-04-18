@@ -69,9 +69,11 @@ const SignUp = Backbone.View.extend({
       wait: true,
       success: function(model, response) {
         JSON.stringify(response);
+        model.set('error', '');
         model.set('success', response);
       },
       error: function(model, error) {
+        model.set('success', '');
         model.set('error', error.responseText);
       }
     });

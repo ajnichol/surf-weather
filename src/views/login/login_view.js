@@ -7,6 +7,9 @@ const Login = Backbone.View.extend({
       '</div>' +
       '<div class="col-sm-10">' +
         '<h3>Login</h3>' +
+        '<% if (error != "") {%>' +
+          '<p class="error"><%=error%></p>' +
+        '<% } %>' +
       '</div>' +
     '</div>' +
     '<div class="form-group">' +
@@ -32,13 +35,35 @@ const Login = Backbone.View.extend({
     'submit': 'login'
   },
 
+  initialize: function() {
+    this.listenTo(user, 'change:error', this.render);
+  },
+
   render: function() {
-    this.$el.html(this.template());
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   },
 
   login: function(event) {
     event.preventDefault();
-    console.log('logging in');
+    let user_email = $('#login_email').val().trim();
+    let login_password = $('#login_password').val().trim();
+    user.set({
+      name: '',
+      email: user_email,
+      password: login_password,
+      confirm_password: '',
+      error: '',
+      success: '',
+      isLoggedIn: '',
+    });
+    user.fetch({
+      success: function(model, response) {
+        console.log(response);
+      },
+      error: function(model, error) {
+        console.log(error);
+      }
+    });
   }
 });
