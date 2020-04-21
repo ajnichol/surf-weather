@@ -26,6 +26,7 @@ const Router = Backbone.Router.extend({
   home: function() {
     $('#sign_up').hide();
     $('#login').hide();
+    $('#search').hide();
     $('#home').show();
     this.home.render().el;
     $('.carousel').carousel({
@@ -36,6 +37,7 @@ const Router = Backbone.Router.extend({
   signUp: function() {
     $('#home').hide();
     $('#login').hide();
+    $('#search').hide();
     $('#sign_up').show();
     this.signUp.render().el;
   },
@@ -43,12 +45,17 @@ const Router = Backbone.Router.extend({
   login: function() {
     $('#home').hide();
     $('#sign_up').hide();
+    $('#search').hide();
     $('#login').show();
     this.login.render().el;
   },
 
   search: function() {
-    $('#content').html(ViewManager.showView(this.search));
+    $('#home').hide();
+    $('#sign_up').hide();
+    $('#login').hide();
+    $('#search').show();
+    this.search.render().el;
   },
 
   myWeather: function() {

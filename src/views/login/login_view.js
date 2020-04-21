@@ -15,13 +15,13 @@ const Login = Backbone.View.extend({
     '<div class="form-group">' +
       '<label for="login_email" class="col-sm-2 control-label">Email</label>' +
       '<div class="col-sm-10">' +
-        '<input type="email" class="form-control" name="login_email" id="login_email" placeholder="Email">' +
+        '<input type="text" class="form-control" name="login_email" id="login_email" placeholder="Email">' +
       '</div>' +
     '</div>' +
     '<div class="form-group">' +
       '<label for="sign_up_password" class="col-sm-2 control-label">Password</label>' +
       '<div class="col-sm-10">' +
-        '<input type="text" class="form-control" name="login_password" id="login_password" placeholder="Password">' +
+        '<input type="password" class="form-control" name="login_password" id="login_password" placeholder="Password">' +
       '</div>' +
     '</div>' +
     '<div class="form-group">' +
@@ -46,23 +46,19 @@ const Login = Backbone.View.extend({
 
   login: function(event) {
     event.preventDefault();
+    user.set('confirm_password', '');
     let user_email = $('#login_email').val().trim();
-    let login_password = $('#login_password').val().trim();
-    user.set({
-      name: '',
-      email: user_email,
-      password: login_password,
-      confirm_password: '',
-      error: '',
-      success: '',
-      isLoggedIn: '',
-    });
-    user.fetch({
+    let user_password = $('#login_password').val().trim();
+    user.save({email: user_email, password: user_password}, {
+      wait: true,
       success: function(model, response) {
-        console.log(response);
+        JSON.stringify(response);
+        model.set({user_id: response.user_id, name: response.name, password: '', error: '', isLoggedIn: true});
+        window.location.href = "http://localhost:8888/myprojects/surf-weather/src/#/search";
       },
       error: function(model, error) {
-        console.log(error);
+        model.set('success', '');
+        model.set('error', error.responseText);
       }
     });
   }
