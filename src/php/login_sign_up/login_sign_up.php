@@ -71,5 +71,17 @@
     $_SESSION['user_id'] = $user['id'];
 
     http_response_code(200);
-    echo(json_encode(['user_id' => $user['id'], 'name' => $user['name']]));
+    echo(json_encode(
+      [
+        'user_id' => $user['id'],
+        'name' => $user['name'],
+        'email' => '',
+        'password' => '',
+        'confirm_password' => '',
+        'success' => '',
+        'error' => '',
+        'isLoggedIn' => true
+      ]
+    ));
+    return;
   }

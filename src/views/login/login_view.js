@@ -52,8 +52,9 @@ const Login = Backbone.View.extend({
     user.save({email: user_email, password: user_password}, {
       wait: true,
       success: function(model, response) {
-        JSON.stringify(response);
-        model.set({user_id: response.user_id, name: response.name, password: '', error: '', isLoggedIn: true});
+        localStorage.setItem('user_id', response.user_id);
+        localStorage.setItem('name', response.name);
+        localStorage.setItem('isLoggedIn', response.isLoggedIn);
         window.location.href = "http://localhost:8888/myprojects/surf-weather/src/#/search";
       },
       error: function(model, error) {

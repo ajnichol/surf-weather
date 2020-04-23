@@ -4,14 +4,14 @@ const User = Backbone.Model.extend({
     idAttribute: 'user_id',
 
     defaults: {
-        user_id: '',
-        name: '',
+        user_id: localStorage.getItem('user_id'),
+        name: localStorage.getItem('name'),
         email: '',
         password: '',
         confirm_password: '',
         success: '',
         error: '',
-        isLoggedIn: false
+        isLoggedIn: (localStorage.getItem('isLoggedIn') === 'true')
     }
 });
 

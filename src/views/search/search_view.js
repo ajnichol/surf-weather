@@ -26,10 +26,6 @@ const Search = Backbone.View.extend({
     'submit': 'search'
   },
 
-  // initialize: function() {
-  //   this.listenTo(user, 'change:error', this.render);
-  // },
-
   render: function() {
     this.$el.html(this.template());
     return this;
