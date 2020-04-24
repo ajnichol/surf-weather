@@ -24,6 +24,20 @@
   width: 100%;
 }
 
+#search {
+  position: relative;
+  overflow: hidden;
+  max-height: 100vh;
+  width: 100%;
+}
+
+#vidContainer {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
 .form-group label {
   color: white;
 }
