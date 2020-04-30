@@ -3,16 +3,16 @@ const NavigationView = Backbone.View.extend({
 
     template: _.template(
       '<nav class="navbar navbar-inverse">' +
-          '<div class="container-fluid">' +
-            '<div class="container">' +
-              '<div class="navbar-header">' +
-                '<a class="navbar-brand" href="#">Surf-Weather</a>' +
-              '</div>' +
-              '<ul class="nav navbar-nav navbar-right">' +
-              '</ul>' +
+        '<div class="container-fluid">' +
+          '<div class="container">' +
+            '<div class="navbar-header">' +
+              '<a class="navbar-brand" href="#">Surf-Weather</a>' +
             '</div>' +
+            '<ul class="nav navbar-nav navbar-right">' +
+            '</ul>' +
           '</div>' +
-        '</nav>'
+        '</div>' +
+      '</nav>'
     ),
 
     initialize: function(){

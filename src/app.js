@@ -19,7 +19,9 @@ const Router = Backbone.Router.extend({
     this.login = new Login({
       model: user
     });
-    this.search = new Search();
+    this.search = new Search({
+      model: weather
+    });
     this.myWeather = new MyWeather();
   },
 
