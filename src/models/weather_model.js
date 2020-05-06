@@ -1,21 +1,11 @@
 const Weather = Backbone.Model.extend({
     urlRoot: 'php/weather/search_weather.php',
 
-    idAttribute: 'weather_id',
+    idAttribute: 'id',
 
     defaults: {
-        weather_id: '',
-        city: '',
-        country: '',
-        population: '',
-        timezone: '',
-        sunrise: '',
-        sunset: '',
-        temperature: '',
-        humidity: '',
-        description: '',
-        wind: '',
-        timestamp: '',
+        city: [],
+        weather: [],
         error: ''
     }
 });
