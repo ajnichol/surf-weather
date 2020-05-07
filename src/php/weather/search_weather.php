@@ -1,6 +1,8 @@
 <?php
   // require db connection
   require_once '../db_connection.php';
+  // require utils class
+  require_once '../classes/utils.php';
   // and env vars
   require '../../../vendor/autoload.php';
   $dotenv = Dotenv\Dotenv::createImmutable('../../../');
@@ -10,10 +12,11 @@
   // get form data
   $form_data = json_decode(file_get_contents('php://input'), true);
 
-  if (strlen($form_data['city']) < 1) {
+  $invalid_search = Utils::validate_search($form_data);
+  if ($invalid_search) {
     http_response_code(403);
-    echo('All fields are required.');
-    // return;
+    echo($invalid_search);
+    return;
   }
 
   $params = http_build_query([
@@ -23,8 +26,7 @@
   ]);
 
   $owm_data = json_decode(file_get_contents(URL . $params), true);
-  // create data structure to return to frontend that can map to your
-  // weather model
+
   $sunrise = new DateTime('@'.$owm_data['city']['sunrise']);
   $sunset = new DateTime('@'.$owm_data['city']['sunset']);
   $sunrise->setTimeZone(new DateTimeZone($owm_data['city']['timezone']/60/60));
@@ -40,13 +42,15 @@
   ];
 
   foreach ($owm_data['list'] as $data) {
+    $timestamp = new DateTime('@'.$data['dt']);
+    $timestamp->setTimeZone(new DateTimeZone($owm_data['city']['timezone']/60/60));
     $weather_data['weather'][] = [
+      'timestamp' => $timestamp->format('Y-m-d H:i:s'),
       'description' => $data['weather'][0]['description'],
       'temperature' => $data['main']['temp'],
       'humidity' => $data['main']['humidity'] . '%',
       'wind' => $data['wind']['speed'] . 'mph',
-      'clouds' => $data['clouds']['all'] . '%',
-      'timestamp' => $data['dt_txt']
+      'clouds' => $data['clouds']['all'] . '%'
     ];
   }
   var_dump($weather_data);
