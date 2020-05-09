@@ -78,4 +78,42 @@
       );
       return $user_data;
     }
+
+    public static function weather_search($owm_key, $form_data) {
+      $params = http_build_query([
+        'q' => $form_data['city'],
+        'units' => 'imperial',
+        'appid' => $owm_key
+      ]);
+
+      $owm_data = json_decode(file_get_contents(self::OWM_API . $params), true);
+
+      $sunrise = new DateTime('@'.$owm_data['city']['sunrise']);
+      $sunset = new DateTime('@'.$owm_data['city']['sunset']);
+      $sunrise->setTimeZone(new DateTimeZone($owm_data['city']['timezone']/60/60));
+      $sunset->setTimeZone(new DateTimeZone($owm_data['city']['timezone']/60/60));
+      $weather_data = [
+        'city' => [
+          'name' => $owm_data['city']['name'],
+          'country' => $owm_data['city']['country'],
+          'population' => $owm_data['city']['population'],
+          'sunrise' => $sunrise->format('Y-m-d H:i:s'),
+          'sunset' => $sunset->format('Y-m-d H:i:s'),
+        ]
+      ];
+
+      foreach ($owm_data['list'] as $data) {
+        $timestamp = new DateTime('@'.$data['dt']);
+        $timestamp->setTimeZone(new DateTimeZone($owm_data['city']['timezone']/60/60));
+        $weather_data['weather'][] = [
+          'timestamp' => $timestamp->format('Y-m-d H:i:s'),
+          'description' => $data['weather'][0]['description'],
+          'temperature' => $data['main']['temp'],
+          'humidity' => $data['main']['humidity'] . '%',
+          'wind' => $data['wind']['speed'] . 'mph',
+          'clouds' => $data['clouds']['all'] . '%'
+        ];
+      }
+      return json_encode($weather_data);
+    }
   }
