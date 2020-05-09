@@ -46,7 +46,7 @@ const Search = Backbone.View.extend({
       wait: true,
       success: function(model, response) {
         model.set('error', '');
-        console.log(response);
+        window.location.href = "http://localhost:8888/myprojects/surf-weather/src/#/results";
       },
       error: function(model, error) {
         model.set('error', error.responseText);

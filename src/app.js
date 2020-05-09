@@ -4,11 +4,8 @@ const Router = Backbone.Router.extend({
     'sign_up': 'signUp',
     'login': 'login',
     'search': 'search',
+    'results': 'results',
     'my_weather': 'myWeather'
-  },
-
-  preinitialize: function() {
-    console.log('this is cool');
   },
 
   initialize: function() {
@@ -20,6 +17,9 @@ const Router = Backbone.Router.extend({
       model: user
     });
     this.search = new Search({
+      model: weather
+    });
+    this.results = new Results({
       model: weather
     });
     this.myWeather = new MyWeather();
@@ -58,6 +58,15 @@ const Router = Backbone.Router.extend({
     $('#login').hide();
     $('#search').show();
     this.search.render().el;
+  },
+
+  results: function() {
+    $('#home').hide();
+    $('#sign_up').hide();
+    $('#login').hide();
+    $('#search').hide();
+    $('#results').show();
+    this.results.render().el;
   },
 
   myWeather: function() {

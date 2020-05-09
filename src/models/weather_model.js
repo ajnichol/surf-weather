@@ -6,6 +6,7 @@ const Weather = Backbone.Model.extend({
     defaults: {
         city: [],
         weather: [],
+        success: '',
         error: ''
     }
 });
