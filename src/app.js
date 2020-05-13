@@ -19,7 +19,7 @@ const Router = Backbone.Router.extend({
     this.search = new Search({
       model: weather
     });
-    this.results = new Results({
+    this.city_info = new CityInfo({
       model: weather
     });
     this.myWeather = new MyWeather();
@@ -66,7 +66,7 @@ const Router = Backbone.Router.extend({
     $('#login').hide();
     $('#search').hide();
     $('#results').show();
-    this.results.render().el;
+    this.city_info.render().el;
   },
 
   myWeather: function() {

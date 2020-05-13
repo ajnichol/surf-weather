@@ -106,8 +106,8 @@
         $timestamp = new DateTime('@'.$data['dt']);
         $timestamp->setTimeZone(new DateTimeZone($owm_data['city']['timezone']/60/60));
         $weather_data['weather'][] = [
-          'timestamp' => $timestamp->format('Y-m-d H:i:s'),
           'description' => $data['weather'][0]['description'],
+          'timestamp' => $timestamp->format('Y-m-d H:i:s'),
           'temperature' => $data['main']['temp'],
           'humidity' => $data['main']['humidity'] . '%',
           'wind' => $data['wind']['speed'] . 'mph',
