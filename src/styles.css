@@ -39,6 +39,7 @@
 }
 
 #results {
+  overflow: auto;
   background-image: url('img/results/results.jpg');
   background-size: cover;
   background-position: center;
