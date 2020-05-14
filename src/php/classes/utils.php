@@ -111,7 +111,8 @@
           'temperature' => $data['main']['temp'],
           'humidity' => $data['main']['humidity'] . '%',
           'wind' => $data['wind']['speed'] . 'mph',
-          'clouds' => $data['clouds']['all'] . '%'
+          'clouds' => $data['clouds']['all'] . '%',
+          'icon' => $data['weather'][0]['icon']
         ];
       }
       return json_encode($weather_data);

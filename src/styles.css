@@ -63,3 +63,11 @@
 .success {
   color: green;
 }
+
+.panel-heading {
+  padding: 0;
+}
+
+.panel-heading h3 {
+  display: inline;
+}

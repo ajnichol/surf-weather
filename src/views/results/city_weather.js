@@ -6,6 +6,7 @@ const CityWeather = Backbone.View.extend({
       '<div class="col-xs-3">' +
         '<div class="panel panel-default">' +
           '<div class="panel-heading">' +
+            '<img src="http://openweathermap.org/img/wn/<%=item.icon%>@2x.png">' +
             '<h3 class="panel-title"><%=item.description%></h3>' +
           '</div>' +
           '<div class="panel-body">' +
