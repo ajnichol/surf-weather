@@ -4,6 +4,7 @@ const Weather = Backbone.Model.extend({
     idAttribute: 'id',
 
     defaults: {
+        user_id: '',
         city: [],
         weather: [],
         success: '',

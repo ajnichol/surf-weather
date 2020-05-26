@@ -1,5 +1,5 @@
 const CollectWeather = Backbone.Collection.extend({
-  // model: SavedWeather,
+  model: Weather,
 
   url: 'php/weather/collect_weather.php'
 });

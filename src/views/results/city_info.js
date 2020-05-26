@@ -35,5 +35,18 @@ const CityInfo = Backbone.View.extend({
   save_weather: function(e) {
     e.preventDefault();
     console.log('Saving weather');
+    console.log(this.model);
+    // let my_weather = collect_weather.create(
+    //   this.model,
+    //   {
+    //     wait: true,
+    //     success: function(response) {
+    //       console.log(response);
+    //     },
+    //     error: function(error) {
+    //       console.log(error);
+    //     }
+    //   }
+    // );
   }
 });

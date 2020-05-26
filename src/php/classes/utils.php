@@ -88,12 +88,14 @@
 
       $owm_data = json_decode(file_get_contents(self::OWM_API . $params), true);
 
+      $timezone = strpos(strval($owm_data['city']['timezone']), '-') !== false ? $owm_data['city']['timezone']/60/60 : '+' . $owm_data['city']['timezone']/60/60;
       $sunrise = new DateTime('@'.$owm_data['city']['sunrise']);
       $sunset = new DateTime('@'.$owm_data['city']['sunset']);
-      $sunrise->setTimeZone(new DateTimeZone($owm_data['city']['timezone']/60/60));
-      $sunset->setTimeZone(new DateTimeZone($owm_data['city']['timezone']/60/60));
+      $sunrise->setTimeZone(new DateTimeZone($timezone));
+      $sunset->setTimeZone(new DateTimeZone($timezone));
       $weather_data = [
         'city' => [
+          'id' => $owm_data['city']['id'],
           'name' => $owm_data['city']['name'],
           'country' => $owm_data['city']['country'],
           'population' => $owm_data['city']['population'],
@@ -104,7 +106,7 @@
 
       foreach ($owm_data['list'] as $data) {
         $timestamp = new DateTime('@'.$data['dt']);
-        $timestamp->setTimeZone(new DateTimeZone($owm_data['city']['timezone']/60/60));
+        $timestamp->setTimeZone(new DateTimeZone($timezone));
         $weather_data['weather'][] = [
           'description' => $data['weather'][0]['description'],
           'timestamp' => $timestamp->format('Y-m-d H:i:s'),

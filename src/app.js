@@ -29,6 +29,7 @@ const Router = Backbone.Router.extend({
     $('#sign_up').hide();
     $('#login').hide();
     $('#search').hide();
+    $('#results').hide();
     $('#home').show();
     this.home.render().el;
     $('.carousel').carousel({
