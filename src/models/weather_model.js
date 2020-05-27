@@ -1,10 +1,8 @@
 const Weather = Backbone.Model.extend({
-    urlRoot: 'php/weather/search_weather.php',
-
     idAttribute: 'id',
 
     defaults: {
-        user_id: '',
+        user_id: localStorage.getItem('user_id'),
         city: [],
         weather: [],
         success: '',
@@ -13,3 +11,5 @@ const Weather = Backbone.Model.extend({
 });
 
 const weather = new Weather();
+
+weather.url = 'php/weather/search_weather.php';

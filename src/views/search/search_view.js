@@ -41,6 +41,7 @@ const Search = Backbone.View.extend({
 
   search: function(event) {
     event.preventDefault();
+    console.log(weather.url);
     let user_search = $('#user_search').val().trim();
     weather.save({city: user_search}, {
       wait: true,

@@ -8,7 +8,12 @@ const CityInfo = Backbone.View.extend({
       '<h4>Population: <%=city.population%></h4>' +
       '<h4>Sunrise: <%=city.sunrise%></h4>' +
       '<h4>Sunset: <%=city.sunset%></h4>' +
-      '<button type="submit" class="btn btn-success">Save <span class="glyphicon glyphicon-save" aria-hidden="true"></span></button>' +
+      '<button type="button" class="btn btn-success">Save <span class="glyphicon glyphicon-save" aria-hidden="true"></span></button>' +
+      '<% if (error != "") {%>' +
+        '<p class="error"><%=error%></p>' +
+      '<% } else if (success != "") {%>' +
+        '<p class="success"><%=success%></p>' +
+      '<% } %>' +
     '</div>' +
     '<div class="container">' +
       '<div class="row" id="city_weather">' +
@@ -17,11 +22,12 @@ const CityInfo = Backbone.View.extend({
   ),
 
   events: {
-    'submit': 'save_weather'
+    'click': 'save_weather'
   },
 
   initialize: function() {
     this.listenTo(weather, 'change:success', this.render);
+    this.listenTo(weather, 'change:error', this.render);
   },
 
   render: function() {
@@ -32,21 +38,23 @@ const CityInfo = Backbone.View.extend({
     return this;
   },
 
-  save_weather: function(e) {
-    e.preventDefault();
+  save_weather: function() {
     console.log('Saving weather');
-    console.log(this.model);
-    // let my_weather = collect_weather.create(
-    //   this.model,
-    //   {
-    //     wait: true,
-    //     success: function(response) {
-    //       console.log(response);
-    //     },
-    //     error: function(error) {
-    //       console.log(error);
-    //     }
-    //   }
-    // );
+    console.log(weather);
+    console.log(weather.attributes);
+    let my_weather = collect_weather.create(
+      weather.attributes,
+      {
+        wait: true,
+        success: function(model, response) {
+          console.log(response);
+          // this.model.set('success', response.success);
+        },
+        error: function(error) {
+          console.log(error);
+          // this.model.set('error', error);
+        }
+      }
+    );
   }
 });
