@@ -6,11 +6,16 @@
   // get form data
   $form_data = json_decode(file_get_contents('php://input'), true);
 
-  $invalid_save = Utils::validate_save($form_data);
-  if ($invalid_save) {
-    http_response_code(403);
-    echo($invalid_save);
+  if (isset($form_data['user_id']) && isset($form_data['city'])) {
+    $invalid_save = Utils::validate_save($form_data);
+    if ($invalid_save) {
+      http_response_code(403);
+      echo($invalid_save);
+      return;
+    }
+
+    echo Utils::save_weather($pdo, $form_data);
     return;
   }
 
-  echo Utils::save_weather($pdo, $form_data);
+  var_dump($form_data);

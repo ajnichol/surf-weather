@@ -20,3 +20,4 @@
 
   http_response_code(200);
   echo Utils::weather_search($owm_key, $form_data);
+  return;

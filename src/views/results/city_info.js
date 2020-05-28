@@ -39,7 +39,6 @@ const CityInfo = Backbone.View.extend({
   },
 
   save_weather: function() {
-    console.log('Saving weather');
     let my_weather = collect_weather.create(
       weather.attributes,
       {

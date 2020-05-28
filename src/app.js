@@ -22,7 +22,9 @@ const Router = Backbone.Router.extend({
     this.city_info = new CityInfo({
       model: weather
     });
-    this.myWeather = new MyWeather();
+    this.my_weather = new MyWeather({
+      collection: collect_weather
+    });
   },
 
   home: function() {
@@ -71,7 +73,13 @@ const Router = Backbone.Router.extend({
   },
 
   myWeather: function() {
-    $('#content').html(ViewManager.showView(this.myWeather));
+    $('#home').hide();
+    $('#sign_up').hide();
+    $('#login').hide();
+    $('#search').hide();
+    $('#results').hide();
+    $('#my_weather').show();
+    this.my_weather.render().el;
   }
 });
 
