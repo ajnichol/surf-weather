@@ -31,6 +31,17 @@
       return false;
     }
 
+    public static function validate_save($form_data) {
+      if (strlen($form_data['user_id']) < 1) {
+        return 'Invalid user_id passed in';
+      }
+
+      if (empty($form_data['city'])) {
+        return 'Invalid city data passed in';
+      }
+      return false;
+    }
+
     public static function sign_up_user($pdo, $form_data) {
       $user_pass = hash('md5', self::SALT . $form_data['password']);
       $statement = $pdo->prepare(
@@ -118,5 +129,26 @@
         ];
       }
       return json_encode($weather_data);
+    }
+
+    public static function save_weather($pdo, $form_data) {
+      $statement = $pdo->prepare(
+        "INSERT INTO `weather` (`user_id`, `city`, `remote_id`)
+        VALUES (:user_id, :city, :remote_id)
+        ON DUPLICATE KEY UPDATE `created_at` = CURRENT_TIMESTAMP()"
+      );
+      $statement->execute(array(
+        'user_id' => $form_data['user_id'],
+        'city' => $form_data['city']['name'],
+        'remote_id' => $form_data['city']['id']
+      ));
+
+      if ($statement->rowCount() < 1) {
+        http_response_code(403);
+        return 'There was an issue saving your request';
+      }
+
+      http_response_code(200);
+      return json_encode(['success' => 'Saved successfully']);
     }
   }

@@ -22,7 +22,7 @@ const CityInfo = Backbone.View.extend({
   ),
 
   events: {
-    'click': 'save_weather'
+    'click button': 'save_weather'
   },
 
   initialize: function() {
@@ -40,19 +40,15 @@ const CityInfo = Backbone.View.extend({
 
   save_weather: function() {
     console.log('Saving weather');
-    console.log(weather);
-    console.log(weather.attributes);
     let my_weather = collect_weather.create(
       weather.attributes,
       {
         wait: true,
         success: function(model, response) {
-          console.log(response);
-          // this.model.set('success', response.success);
+          weather.set('success', response.success);
         },
-        error: function(error) {
-          console.log(error);
-          // this.model.set('error', error);
+        error: function(model, error) {
+          weather.set('error', error.responseText);
         }
       }
     );

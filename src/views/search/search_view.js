@@ -41,12 +41,12 @@ const Search = Backbone.View.extend({
 
   search: function(event) {
     event.preventDefault();
-    console.log(weather.url);
     let user_search = $('#user_search').val().trim();
     weather.save({city: user_search}, {
       wait: true,
       success: function(model, response) {
         model.set('error', '');
+        model.set('success', '');
         window.location.href = "http://localhost:8888/myprojects/surf-weather/src/#/results";
       },
       error: function(model, error) {

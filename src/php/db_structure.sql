@@ -20,8 +20,7 @@ CREATE TABLE weather (
   remote_id INT(11) UNSIGNED NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
-  KEY city (city),
-  KEY remote_id (remote_id),
+  CONSTRAINT `user_remote_id_unique` UNIQUE (`user_id`, `remote_id`),
   CONSTRAINT `FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
