@@ -42,6 +42,13 @@
       return false;
     }
 
+    public static function validate_collect_weather($user_id) {
+      if (!is_numeric($user_id)) {
+        return 'Invalid user_id passed in';
+      }
+      return false;
+    }
+
     public static function sign_up_user($pdo, $form_data) {
       $user_pass = hash('md5', self::SALT . $form_data['password']);
       $statement = $pdo->prepare(
@@ -138,9 +145,9 @@
         ON DUPLICATE KEY UPDATE `created_at` = CURRENT_TIMESTAMP()"
       );
       $statement->execute(array(
-        'user_id' => $form_data['user_id'],
-        'city' => $form_data['city']['name'],
-        'remote_id' => $form_data['city']['id']
+        ':user_id' => $form_data['user_id'],
+        ':city' => $form_data['city']['name'],
+        ':remote_id' => $form_data['city']['id']
       ));
 
       if ($statement->rowCount() < 1) {
@@ -150,5 +157,23 @@
 
       http_response_code(200);
       return json_encode(['success' => 'Saved successfully']);
+    }
+
+    public static function collect_weather($pdo, $user_id) {
+      $statement = $pdo->prepare(
+        "SELECT *
+        FROM `weather`
+        WHERE `user_id` = :user_id"
+      );
+      $statement->execute(array(
+        ':user_id' => $user_id
+      ));
+      $users_weather = $statement->fetchAll(PDO::FETCH_ASSOC);
+      if (empty($users_weather)) {
+        http_response_code(403);
+        return 'There was an issue retreiving your saved weather';
+      }
+
+      return json_encode($users_weather);
     }
   }

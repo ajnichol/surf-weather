@@ -18,4 +18,14 @@
     return;
   }
 
-  var_dump($_GET['user_id']);
+  $user_id = intval($_GET['user_id']);
+  $is_int = Utils::validate_collect_weather($user_id);
+  if ($is_int) {
+    http_response_code(403);
+    echo($is_int);
+    return;
+  }
+
+  http_response_code(200);
+  echo Utils::collect_weather($pdo, $user_id);
+  return;
