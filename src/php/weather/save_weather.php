@@ -18,4 +18,4 @@
     return;
   }
 
-  var_dump($form_data);
+  var_dump($_GET['user_id']);

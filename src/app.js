@@ -79,7 +79,7 @@ const Router = Backbone.Router.extend({
     $('#search').hide();
     $('#results').hide();
     $('#my_weather').show();
-    this.my_weather.render().el;
+    this.my_weather.render();
   }
 });
 

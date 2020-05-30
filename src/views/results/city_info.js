@@ -39,7 +39,7 @@ const CityInfo = Backbone.View.extend({
   },
 
   save_weather: function() {
-    let my_weather = collect_weather.create(
+    collect_weather.create(
       weather.attributes,
       {
         wait: true,
