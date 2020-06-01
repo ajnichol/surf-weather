@@ -48,6 +48,15 @@
   width: 100%;
 }
 
+#my_weather {
+  background-image: url('img/results/results.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+}
+
 .form-group label {
   color: white;
 }
@@ -70,4 +79,11 @@
 
 .panel-heading h3 {
   display: inline;
+}
+
+table {
+  height: 100vh;
+  font-size: 18px;
+  background-color: #ffffff94;
+  margin-bottom: 0 !important;
 }

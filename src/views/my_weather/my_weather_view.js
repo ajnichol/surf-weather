@@ -2,15 +2,54 @@ const MyWeather = Backbone.View.extend({
   el: '#my_weather',
 
   template: _.template(
-    '<div class="container text-center">' +
-      '<% models.forEach(function(item) { %>' +
-        '<div class="row">' +
-          '<div class="col-xs-12">' +
-            '<h1>City Name: <%= item.attributes.city %></h1>' +
-          '</div>' +
-        '</div>' +
-      '<% }); %>' +
+    '<div class="container">' +
+      '<table class="table table-hover">' +
+        '<tr>' +
+          '<th>City</th>' +
+          '<th>Saved At</th>' +
+          '<th>View Weather Forecast</th>' +
+          '<th>Delete Weather</th>' +
+        '</tr>' +
+        '<% models.forEach(function(item) { %>' +
+          '<tr>' +
+            '<td><%= item.attributes.city %></td>' +
+            '<td><%= item.attributes.created_at %></td>' +
+            '<td><button type="button" class="btn btn-primary">View</button></td>' +
+            '<td><button type="button" class="btn btn-danger">Delete</button></td>' +
+          '</tr>' +
+        '<% }); %>' +
+      '</table>' +
     '</div>'
+// <tr>
+//   <td>Alfreds Futterkiste</td>
+//   <td>Maria Anders</td>
+//   <td>Germany</td>
+// </tr>
+// <tr>
+//   <td>Centro comercial Moctezuma</td>
+//   <td>Francisco Chang</td>
+//   <td>Mexico</td>
+// </tr>
+// <tr>
+//   <td>Ernst Handel</td>
+//   <td>Roland Mendel</td>
+//   <td>Austria</td>
+// </tr>
+// <tr>
+//   <td>Island Trading</td>
+//   <td>Helen Bennett</td>
+//   <td>UK</td>
+// </tr>
+// <tr>
+//   <td>Laughing Bacchus Winecellars</td>
+//   <td>Yoshi Tannamuri</td>
+//   <td>Canada</td>
+// </tr>
+// <tr>
+//   <td>Magazzini Alimentari Riuniti</td>
+//   <td>Giovanni Rovelli</td>
+//   <td>Italy</td>
+// </tr>
   ),
 
   error_template: _.template(
