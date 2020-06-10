@@ -14,42 +14,12 @@ const MyWeather = Backbone.View.extend({
           '<tr>' +
             '<td><%= item.attributes.city %></td>' +
             '<td><%= item.attributes.created_at %></td>' +
-            '<td><button type="button" class="btn btn-primary">View</button></td>' +
-            '<td><button type="button" class="btn btn-danger">Delete</button></td>' +
+            '<td><button type="button" data-city="<%= item.attributes.city %>" class="btn btn-primary" id="view_weather">View</button></td>' +
+            '<td><button type="button" data-model-id="<%= item.id %>" class="btn btn-danger" id="delete_weather">Delete</button></td>' +
           '</tr>' +
         '<% }); %>' +
       '</table>' +
     '</div>'
-// <tr>
-//   <td>Alfreds Futterkiste</td>
-//   <td>Maria Anders</td>
-//   <td>Germany</td>
-// </tr>
-// <tr>
-//   <td>Centro comercial Moctezuma</td>
-//   <td>Francisco Chang</td>
-//   <td>Mexico</td>
-// </tr>
-// <tr>
-//   <td>Ernst Handel</td>
-//   <td>Roland Mendel</td>
-//   <td>Austria</td>
-// </tr>
-// <tr>
-//   <td>Island Trading</td>
-//   <td>Helen Bennett</td>
-//   <td>UK</td>
-// </tr>
-// <tr>
-//   <td>Laughing Bacchus Winecellars</td>
-//   <td>Yoshi Tannamuri</td>
-//   <td>Canada</td>
-// </tr>
-// <tr>
-//   <td>Magazzini Alimentari Riuniti</td>
-//   <td>Giovanni Rovelli</td>
-//   <td>Italy</td>
-// </tr>
   ),
 
   error_template: _.template(
@@ -65,6 +35,30 @@ const MyWeather = Backbone.View.extend({
       '</div>' +
     '</div>'
   ),
+
+  events: {
+    'click #delete_weather': 'delete_weather',
+    'click #view_weather': 'view_weather'
+  },
+
+  delete_weather: function(event) {
+    collect_weather.url = 'php/weather/save_weather.php?user_id=' + localStorage.getItem('user_id') + '&weather_id=' + event.target.dataset.modelId;
+    collect_weather.get(event.target.dataset.modelId).destroy({
+      wait: true,
+      success: function(model, response) {
+        console.log('success model: ', model);
+        console.log(response);
+      },
+      error: function(model, error) {
+        console.log(error);
+      }
+    });
+  },
+
+  view_weather: function(event) {
+    console.log('viewing weather');
+    console.log(event.target.dataset.city);
+  },
 
   render: function() {
     const self = this;

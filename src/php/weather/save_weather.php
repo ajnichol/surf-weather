@@ -6,6 +6,11 @@
   // get form data
   $form_data = json_decode(file_get_contents('php://input'), true);
 
+  if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    var_dump($_GET['weather_id']);
+    return;
+  }
+
   if (isset($form_data['user_id']) && isset($form_data['city'])) {
     $invalid_save = Utils::validate_save($form_data);
     if ($invalid_save) {
