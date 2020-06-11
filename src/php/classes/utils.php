@@ -128,7 +128,7 @@
         $weather_data['weather'][] = [
           'description' => $data['weather'][0]['description'],
           'timestamp' => $timestamp->format('Y-m-d H:i:s'),
-          'temperature' => $data['main']['temp'],
+          'temperature' => $data['main']['temp'] . 'F',
           'humidity' => $data['main']['humidity'] . '%',
           'wind' => $data['wind']['speed'] . 'mph',
           'clouds' => $data['clouds']['all'] . '%',
@@ -171,7 +171,7 @@
       $users_weather = $statement->fetchAll(PDO::FETCH_ASSOC);
       if (empty($users_weather)) {
         http_response_code(403);
-        return 'There was an issue retreiving your saved weather';
+        return 'There was an issue retrieving your saved weather';
       }
 
       return json_encode($users_weather);

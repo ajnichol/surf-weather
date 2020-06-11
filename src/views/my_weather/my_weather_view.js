@@ -59,8 +59,17 @@ const MyWeather = Backbone.View.extend({
   },
 
   view_weather: function(event) {
-    console.log('viewing weather');
-    console.log(event.target.dataset.city);
+    weather.save({city: event.target.dataset.city}, {
+      wait: true,
+      success: function(model, response) {
+        model.set('error', '');
+        model.set('success', '');
+        window.location.href = "http://localhost:8888/myprojects/surf-weather/src/#/results";
+      },
+      error: function(model, error) {
+        model.set('error', error.responseText);
+      }
+    });
   },
 
   render: function(error) {
