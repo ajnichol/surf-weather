@@ -176,4 +176,19 @@
 
       return json_encode($users_weather);
     }
+
+    public static function delete_weather($pdo, $weather_id) {
+      $statement = $pdo->prepare("DELETE FROM `weather` WHERE `id` = :id");
+      $statement->execute(array(
+        ':id' => $weather_id
+      ));
+
+      if ($statement->rowCount() < 1) {
+        http_response_code(403);
+        return 'There was an error deleting your weather';
+      }
+
+      http_response_code(200);
+      return json_encode(['success' => 'Deleted successfully']);
+    }
   }

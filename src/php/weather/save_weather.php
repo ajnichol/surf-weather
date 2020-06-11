@@ -6,8 +6,15 @@
   // get form data
   $form_data = json_decode(file_get_contents('php://input'), true);
 
-  if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-    var_dump($_GET['weather_id']);
+  if ($_SERVER['REQUEST_METHOD'] === 'DELETE' && isset($_GET['user_id'])) {
+    $weather_id = intval(substr($_SERVER['REQUEST_URI'], strrpos($_SERVER['REQUEST_URI'], '/') + 1));
+
+    if (empty($weather_id)) {
+      http_response_code(403);
+      echo 'Error deleting, weather_id is missing';
+    }
+
+    echo Utils::delete_weather($pdo, $weather_id);
     return;
   }
 

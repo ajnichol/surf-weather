@@ -41,12 +41,15 @@ const MyWeather = Backbone.View.extend({
     'click #view_weather': 'view_weather'
   },
 
+  initialize: function() {
+    this.listenTo(collect_weather, 'destroy', this.render);
+  },
+
   delete_weather: function(event) {
-    collect_weather.url = 'php/weather/save_weather.php?user_id=' + localStorage.getItem('user_id') + '&weather_id=' + event.target.dataset.modelId;
+    const self = this;
     collect_weather.get(event.target.dataset.modelId).destroy({
       wait: true,
       success: function(model, response) {
-        console.log('success model: ', model);
         console.log(response);
       },
       error: function(model, error) {
@@ -60,7 +63,7 @@ const MyWeather = Backbone.View.extend({
     console.log(event.target.dataset.city);
   },
 
-  render: function() {
+  render: function(error) {
     const self = this;
     collect_weather.fetch({
       success: function(collection, response) {
