@@ -6,7 +6,7 @@ const Search = Backbone.View.extend({
       '<div class="col-sm-2">' +
       '</div>' +
       '<div class="col-sm-10">' +
-        '<h3>Search</h3>' +
+        '<h3>Search Weather</h3>' +
         '<% if (error != "") {%>' +
           '<p class="error"><%=error%></p>' +
         '<% } %>' +
@@ -15,13 +15,13 @@ const Search = Backbone.View.extend({
     '<div class="form-group">' +
       '<div class="col-sm-2"></div>' +
       '<div class="col-sm-8">' +
-        '<input type="text" class="form-control" name="user_search" id="user_search">' +
+        '<input type="text" class="form-control" placeholder="By city name" name="user_search" id="user_search">' +
       '</div>' +
       '<div class="col-sm-2"></div>' +
     '</div>' +
     '<div class="form-group">' +
       '<div class="col-sm-offset-2 col-sm-10">' +
-        '<button type="submit" class="btn btn-default">The World <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>' +
+        '<button type="submit" class="btn btn-default">Submit <span class="glyphicon glyphicon-send" aria-hidden="true"></span></button>' +
       '</div>' +
     '</div>'
   ),

@@ -104,7 +104,15 @@
         'appid' => $owm_key
       ]);
 
-      $owm_data = json_decode(file_get_contents(self::OWM_API . $params), true);
+      $owm_data = json_decode(@file_get_contents(self::OWM_API . $params), true);
+      if (empty($owm_data)) {
+        return 'City not found';
+      }
+
+      $population = 'Population not provided';
+      if (!empty($owm_data['city']['population'])) {
+        $population = $owm_data['city']['population'];
+      }
 
       $timezone = strpos(strval($owm_data['city']['timezone']), '-') !== false ? $owm_data['city']['timezone']/60/60 : '+' . $owm_data['city']['timezone']/60/60;
       $sunrise = new DateTime('@'.$owm_data['city']['sunrise']);
@@ -116,7 +124,7 @@
           'id' => $owm_data['city']['id'],
           'name' => $owm_data['city']['name'],
           'country' => $owm_data['city']['country'],
-          'population' => $owm_data['city']['population'],
+          'population' => $population,
           'sunrise' => $sunrise->format('Y-m-d H:i:s'),
           'sunset' => $sunset->format('Y-m-d H:i:s'),
         ]
