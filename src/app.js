@@ -5,7 +5,8 @@ const Router = Backbone.Router.extend({
     'login': 'login',
     'search': 'search',
     'results': 'results',
-    'my_weather': 'myWeather'
+    'my_weather': 'myWeather',
+    'my_surf': 'mySurf'
   },
 
   initialize: function() {
@@ -25,6 +26,7 @@ const Router = Backbone.Router.extend({
     this.my_weather = new MyWeather({
       collection: collect_weather
     });
+    this.my_surf = new MySurf();
   },
 
   home: function() {
@@ -32,8 +34,10 @@ const Router = Backbone.Router.extend({
     $('#login').hide();
     $('#search').hide();
     $('#results').hide();
+    $('#my_weather').hide();
+    $('#my_surf').hide();
     $('#home').show();
-    this.home.render().el;
+    this.home.render();
     $('.carousel').carousel({
       interval: 7000
     });
@@ -43,16 +47,22 @@ const Router = Backbone.Router.extend({
     $('#home').hide();
     $('#login').hide();
     $('#search').hide();
+    $('#results').hide();
+    $('#my_weather').hide();
+    $('#my_surf').hide();
     $('#sign_up').show();
-    this.signUp.render().el;
+    this.signUp.render();
   },
 
   login: function() {
     $('#home').hide();
     $('#sign_up').hide();
     $('#search').hide();
+    $('#results').hide();
+    $('#my_weather').hide();
+    $('#my_surf').hide();
     $('#login').show();
-    this.login.render().el;
+    this.login.render();
   },
 
   search: function() {
@@ -60,8 +70,10 @@ const Router = Backbone.Router.extend({
     $('#sign_up').hide();
     $('#login').hide();
     $('#my_weather').hide();
+    $('#results').hide();
+    $('#my_surf').hide();
     $('#search').show();
-    this.search.render().el;
+    this.search.render();
   },
 
   results: function() {
@@ -70,8 +82,9 @@ const Router = Backbone.Router.extend({
     $('#login').hide();
     $('#search').hide();
     $('#my_weather').hide();
+    $('#my_surf').hide();
     $('#results').show();
-    this.city_info.render().el;
+    this.city_info.render();
   },
 
   myWeather: function() {
@@ -80,8 +93,20 @@ const Router = Backbone.Router.extend({
     $('#login').hide();
     $('#search').hide();
     $('#results').hide();
+    $('#my_surf').hide();
     $('#my_weather').show();
     this.my_weather.render();
+  },
+
+  mySurf: function() {
+    $('#home').hide();
+    $('#sign_up').hide();
+    $('#login').hide();
+    $('#search').hide();
+    $('#results').hide();
+    $('#my_weather').hide();
+    $('#my_surf').show();
+    this.my_surf.render();
   }
 });
 

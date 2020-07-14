@@ -9,6 +9,7 @@ const NavLinkView = Backbone.View.extend({
       '<li><a>Greetings, <%= name %></a></li>' +
       '<li><a href="#/search"><span class="glyphicon glyphicon-search"></span> Search</a></li>' +
       '<li><a href="#/my_weather"><span class="glyphicon glyphicon-cloud"></span> My Weather</a></li>' +
+      '<li><a href="#/my_surf"><span class="glyphicon glyphicon-tint"></span> My Surf</a></li>' +
       '<li><a href="php/logout/logout.php" onclick="localStorage.clear();"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>' +
     '<% } %>'
   ),
