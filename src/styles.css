@@ -87,3 +87,37 @@ table {
   background-color: #ffffff94;
   margin-bottom: 0 !important;
 }
+
+#tourmaline {
+  background-image: url('img/surf/tourmaline1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100%;
+  cursor: pointer;
+}
+
+#delmar {
+  background-image: url('img/surf/delmar.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100%;
+  cursor: pointer;
+}
+
+.surf_spots {
+  margin: 0;
+  text-align: center;
+  color: #ffffff;
+  padding-top: 40px;
+}
+
+.spot_desc {
+  color: #ffffff;
+  text-align: center;
+}

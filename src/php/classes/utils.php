@@ -199,4 +199,21 @@
       http_response_code(200);
       return json_encode(['success' => 'Deleted successfully']);
     }
+
+    public static function collect_surf($pdo) {
+      $statement = $pdo->prepare(
+        "SELECT * 
+        FROM `surf`"
+      );
+      $statement->execute();
+      $surf_spots = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+      if (empty($surf_spots)) {
+        http_response_code(403);
+        return 'There are currently no surf spots';
+      }
+
+      http_response_code(200);
+      return json_encode($surf_spots);
+    }
   }

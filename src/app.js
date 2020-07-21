@@ -26,7 +26,9 @@ const Router = Backbone.Router.extend({
     this.my_weather = new MyWeather({
       collection: collect_weather
     });
-    this.my_surf = new MySurf();
+    this.my_surf = new MySurf({
+      collection: collect_surf
+    });
   },
 
   home: function() {

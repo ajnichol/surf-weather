@@ -11,13 +11,12 @@
   // get form data
   $form_data = json_decode(file_get_contents('php://input'), true);
 
-  $invalid_search = Utils::validate_search($form_data);
-  if ($invalid_search) {
-    http_response_code(403);
-    echo($invalid_search);
+  if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['user_id'])) {
+    echo Utils::collect_surf($pdo);
     return;
   }
 
-  http_response_code(200);
-  echo Utils::weather_search($owm_key, $form_data);
-  return;
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($form_data['spot_id']) && isset($_GET['user_id'])) {
+    echo Utils::search_surf($pdo, $form_data['spot_id']);
+    return;
+  }
