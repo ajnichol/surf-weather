@@ -17,6 +17,6 @@
   }
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($form_data['spot_id']) && isset($_GET['user_id'])) {
-    echo Utils::search_surf($pdo, $form_data['spot_id']);
+    echo Utils::search_surf($form_data['spot_id'], $msw_key);
     return;
   }

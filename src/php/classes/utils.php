@@ -3,6 +3,7 @@
   class Utils {
     const SALT = 'XyZzy12*_';
     const OWM_API = 'http://api.openweathermap.org/data/2.5/forecast?';
+    const MSW_API = 'http://http://magicseaweed.com/api/';
 
     public static function validate_sign_up($form_data) {
       if(strlen($form_data['name']) < 1 || strlen($form_data['email']) < 1 || strlen($form_data['password']) < 1 || strlen($form_data['confirm_password']) < 1) {
@@ -202,7 +203,7 @@
 
     public static function collect_surf($pdo) {
       $statement = $pdo->prepare(
-        "SELECT * 
+        "SELECT *
         FROM `surf`"
       );
       $statement->execute();
@@ -215,5 +216,22 @@
 
       http_response_code(200);
       return json_encode($surf_spots);
+    }
+
+    public static function search_surf($spot_id, $msw_key) {
+      $params = http_build_query([
+        'spot_id' => $spot_id,
+        'units' => 'us'
+      ]);
+
+      $msw_data = json_decode(@file_get_contents(self::MSW_API . $msw_key . '/forecast/?' . $params), true);
+
+      var_dump($msw_data);
+      $forecast = [];
+      foreach ($msw_data as $data) {
+        $forecast['surf_forecast'][] = $data;
+      }
+
+      return json_encode($forecast);
     }
   }

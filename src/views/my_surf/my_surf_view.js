@@ -37,17 +37,17 @@ const MySurf = Backbone.View.extend({
 
   search_surf: function(event) {
     console.log(event);
-    // weather.save({city: event.target.dataset.spotId}, {
-    //   wait: true,
-    //   success: function(model, response) {
-    //     model.set('error', '');
-    //     model.set('success', '');
-    //     window.location.href = "http://localhost:8888/myprojects/surf-weather/src/#/results";
-    //   },
-    //   error: function(model, error) {
-    //     model.set('error', error.responseText);
-    //   }
-    // });
+    surf.save({spot_id: event.target.dataset.spotId}, {
+      wait: true,
+      success: function(model, response) {
+        console.log('response', response);
+        // window.location.href = "http://localhost:8888/myprojects/surf-weather/src/#/surf_forecast";
+      },
+      error: function(model, error) {
+        console.log('error', error);
+        // model.set('error', error.responseText);
+      }
+    });
   },
 
   render: function(error) {
