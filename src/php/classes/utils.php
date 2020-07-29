@@ -219,7 +219,6 @@
     }
 
     public static function search_surf($spot_id, $msw_key) {
-      $forecast = [];
       $params = http_build_query([
         'spot_id' => $spot_id,
         'units' => 'us'
@@ -227,6 +226,7 @@
 
       $msw_data = json_decode(@file_get_contents(self::MSW_API . $msw_key . '/forecast/?' . $params), true);
 
+      $forecast = [];
       foreach ($msw_data as $data) {
         $date = new DateTime();
         $date->setTimestamp($data['localTimestamp']);

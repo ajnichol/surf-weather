@@ -6,7 +6,8 @@ const Router = Backbone.Router.extend({
     'search': 'search',
     'results': 'results',
     'my_weather': 'myWeather',
-    'my_surf': 'mySurf'
+    'my_surf': 'mySurf',
+    'surf_results': 'surfResults'
   },
 
   initialize: function() {
@@ -29,6 +30,9 @@ const Router = Backbone.Router.extend({
     this.my_surf = new MySurf({
       collection: collect_surf
     });
+    this.surf_results = new SurfResults({
+      model: surf
+    });
   },
 
   home: function() {
@@ -38,6 +42,7 @@ const Router = Backbone.Router.extend({
     $('#results').hide();
     $('#my_weather').hide();
     $('#my_surf').hide();
+    $('#surf_results').hide();
     $('#home').show();
     this.home.render();
     $('.carousel').carousel({
@@ -52,6 +57,7 @@ const Router = Backbone.Router.extend({
     $('#results').hide();
     $('#my_weather').hide();
     $('#my_surf').hide();
+    $('#surf_results').hide();
     $('#sign_up').show();
     this.signUp.render();
   },
@@ -63,6 +69,7 @@ const Router = Backbone.Router.extend({
     $('#results').hide();
     $('#my_weather').hide();
     $('#my_surf').hide();
+    $('#surf_results').hide();
     $('#login').show();
     this.login.render();
   },
@@ -74,6 +81,7 @@ const Router = Backbone.Router.extend({
     $('#my_weather').hide();
     $('#results').hide();
     $('#my_surf').hide();
+    $('#surf_results').hide();
     $('#search').show();
     this.search.render();
   },
@@ -85,6 +93,7 @@ const Router = Backbone.Router.extend({
     $('#search').hide();
     $('#my_weather').hide();
     $('#my_surf').hide();
+    $('#surf_results').hide();
     $('#results').show();
     this.city_info.render();
   },
@@ -96,6 +105,7 @@ const Router = Backbone.Router.extend({
     $('#search').hide();
     $('#results').hide();
     $('#my_surf').hide();
+    $('#surf_results').hide();
     $('#my_weather').show();
     this.my_weather.render();
   },
@@ -107,8 +117,21 @@ const Router = Backbone.Router.extend({
     $('#search').hide();
     $('#results').hide();
     $('#my_weather').hide();
+    $('#surf_results').hide();
     $('#my_surf').show();
     this.my_surf.render();
+  },
+
+  surfResults: function() {
+    $('#home').hide();
+    $('#sign_up').hide();
+    $('#login').hide();
+    $('#search').hide();
+    $('#results').hide();
+    $('#my_weather').hide();
+    $('#my_surf').hide();
+    $('#surf_results').show();
+    this.surf_results.render();
   }
 });
 
