@@ -7,7 +7,8 @@ const Router = Backbone.Router.extend({
     'results': 'results',
     'my_weather': 'myWeather',
     'my_surf': 'mySurf',
-    'surf_results': 'surfResults'
+    'surf_results': 'surfResults',
+    'surf_item_forecast': 'surfItemForecast'
   },
 
   initialize: function() {
@@ -33,6 +34,9 @@ const Router = Backbone.Router.extend({
     this.surf_results = new SurfResults({
       model: surf
     });
+    this.surf_item_forecast = new SurfItemForecast({
+      model: surf_item
+    })
   },
 
   home: function() {
@@ -43,6 +47,7 @@ const Router = Backbone.Router.extend({
     $('#my_weather').hide();
     $('#my_surf').hide();
     $('#surf_results').hide();
+    $('#surf_item_forecast').hide();
     $('#home').show();
     this.home.render();
     $('.carousel').carousel({
@@ -58,6 +63,7 @@ const Router = Backbone.Router.extend({
     $('#my_weather').hide();
     $('#my_surf').hide();
     $('#surf_results').hide();
+    $('#surf_item_forecast').hide();
     $('#sign_up').show();
     this.signUp.render();
   },
@@ -70,6 +76,7 @@ const Router = Backbone.Router.extend({
     $('#my_weather').hide();
     $('#my_surf').hide();
     $('#surf_results').hide();
+    $('#surf_item_forecast').hide();
     $('#login').show();
     this.login.render();
   },
@@ -82,6 +89,7 @@ const Router = Backbone.Router.extend({
     $('#results').hide();
     $('#my_surf').hide();
     $('#surf_results').hide();
+    $('#surf_item_forecast').hide();
     $('#search').show();
     this.search.render();
   },
@@ -94,6 +102,7 @@ const Router = Backbone.Router.extend({
     $('#my_weather').hide();
     $('#my_surf').hide();
     $('#surf_results').hide();
+    $('#surf_item_forecast').hide();
     $('#results').show();
     this.city_info.render();
   },
@@ -106,6 +115,7 @@ const Router = Backbone.Router.extend({
     $('#results').hide();
     $('#my_surf').hide();
     $('#surf_results').hide();
+    $('#surf_item_forecast').hide();
     $('#my_weather').show();
     this.my_weather.render();
   },
@@ -118,6 +128,7 @@ const Router = Backbone.Router.extend({
     $('#results').hide();
     $('#my_weather').hide();
     $('#surf_results').hide();
+    $('#surf_item_forecast').hide();
     $('#my_surf').show();
     this.my_surf.render();
   },
@@ -130,8 +141,22 @@ const Router = Backbone.Router.extend({
     $('#results').hide();
     $('#my_weather').hide();
     $('#my_surf').hide();
+    $('#surf_item_forecast').hide();
     $('#surf_results').show();
     this.surf_results.render();
+  },
+
+  surfItemForecast: function() {
+    $('#home').hide();
+    $('#sign_up').hide();
+    $('#login').hide();
+    $('#search').hide();
+    $('#results').hide();
+    $('#my_weather').hide();
+    $('#my_surf').hide();
+    $('#surf_results').hide();
+    $('#surf_item_forecast').show();
+    this.surf_item_forecast.render();
   }
 });
 

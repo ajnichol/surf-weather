@@ -19,7 +19,7 @@ const SurfResults = Backbone.View.extend({
               '<p>timestamp: <%= item.localTimestamp %></p>' +
               '<p>swell: <%= item.swell.minBreakingHeight %> - <%= item.swell.maxBreakingHeight %>ft</p>' +
               '<p>wind: <%= item.wind.speed %>MPH, direction: <%= item.wind.compassDirection %></p>' +
-              '<a href="#/surf_results" id="surf_item" data-surf-item="<%= index %>">click for full forecast details</a>' +
+              '<a href="#/surf_item_forecast" id="surf_item" data-surf-item="<%= index %>">click for full forecast details</a>' +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -36,6 +36,7 @@ const SurfResults = Backbone.View.extend({
     let surfItem = event.target.dataset.surfItem;
     let surfItemForcast = surf.get('surf_forecast')[surfItem];
     surf_item.set('surf_item_forecast', surfItemForcast);
+    window.location.href = "http://localhost:8888/myprojects/surf-weather/src/#/surf_item_forecast";
     //think about whether to render view from instantiation or from the router e.g. #/surf_item_forecast
     //and if instantiation how would you show the new view as its own page?
     // let surf_item_view = new SurfItemForecast({
