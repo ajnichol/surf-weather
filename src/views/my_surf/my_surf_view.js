@@ -32,15 +32,12 @@ const MySurf = Backbone.View.extend({
   },
 
   search_surf: function(event) {
-    console.log(event);
     surf.save({spot_name: event.target.dataset.spotName, spot_id: event.target.dataset.spotId}, {
       wait: true,
       success: function(model, response) {
-        console.log('response', response);
         window.location.href = "http://localhost:8888/myprojects/surf-weather/src/#/surf_results";
       },
       error: function(model, error) {
-        console.log('error', error);
         self.$el.html(self.error_template(error));
       }
     });
@@ -50,15 +47,10 @@ const MySurf = Backbone.View.extend({
     const self = this;
     collect_surf.fetch({
       success: function(collection, response) {
-        console.log('response', response);
-        console.log(collection);
         self.$el.html(self.template(collection));
-        // return self;
       },
       error: function(collection, error) {
-        console.log('error', error);
         self.$el.html(self.error_template(error));
-        // return self;
       }
     });
   }

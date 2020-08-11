@@ -33,15 +33,11 @@ const SurfResults = Backbone.View.extend({
   },
 
   surf_item: function(event) {
+    let spotName = this.model.get('spot_name');
     let surfItem = event.target.dataset.surfItem;
     let surfItemForcast = surf.get('surf_forecast')[surfItem];
-    surf_item.set('surf_item_forecast', surfItemForcast);
+    surf_item.set({spot_name: spotName, surf_item_forecast: surfItemForcast});
     window.location.href = "http://localhost:8888/myprojects/surf-weather/src/#/surf_item_forecast";
-    //think about whether to render view from instantiation or from the router e.g. #/surf_item_forecast
-    //and if instantiation how would you show the new view as its own page?
-    // let surf_item_view = new SurfItemForecast({
-    //   model: surf_item
-    // });
   },
 
   render: function() {

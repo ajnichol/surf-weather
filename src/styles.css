@@ -131,3 +131,7 @@ table {
   color: #ffffff;
   text-align: center;
 }
+
+.surf_charts {
+  max-width: 100%;
+}
